@@ -11,14 +11,16 @@ import FAQPage from './pages/FAQPage';
 import CarComparePage from './pages/CarComparePage';
 import CustomerStoriesPage from './pages/CustomerStoriesPage';
 import DealerLocatorPage from './pages/DealerLocatorPage';
+import { useState } from 'react';
 
 function App() {
+  const[login,setLogin]=useState(false)
   return (
     <>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home/>}/> 
-      <Route path="/login" element={<LoginPage/>}/>
+      <Route path="/login" element={<LoginPage login={login} setLogin={setLogin}/>}/>
       <Route path="/register" element={<RegisterPage/>}/>
       <Route path="/cars" element={<CarsPage/>}/>
       <Route path="/contact" element={<ContactPage/>}/>

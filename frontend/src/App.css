@@ -3,41 +3,26 @@
 @tailwind utilities;
 
 
-.App {
-  text-align: center;
+
+::-webkit-scrollbar {
+  width: 6px; /* Set the width of the scrollbar */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Customize the scrollbar track */
+::-webkit-scrollbar-track {
+  background-color: transparent; /* Make the track transparent */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 1s alternate-reverse;
-  }
+/* Customize the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background-color: #7289da7b; /* Color for the scrollbar handle */
+  border-radius: 6px; /* Round the corners of the handle */
 }
 
-.App-header {
-  background-color: #c2470a;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Optional: Customize scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #5A67D8; /* Change color on hover */
 }
 
-.App-link {
-  color: #61dafb;
-}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
