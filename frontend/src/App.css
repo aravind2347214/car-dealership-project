@@ -25,4 +25,10 @@
 }
 
 
+.herosection{
+  background: url(..//public/images/homeimages/heroimage.jpg) no-repeat center top / cover ;
+  height: 100vh;
+  background-attachment:fixed ;
+
+}
 

@@ -29,6 +29,7 @@ function App() {
       <Route path="/car-compare" element={<CarComparePage/>}/>
       <Route path="/customer-stories" element={<CustomerStoriesPage/>}/>
       <Route path="/dealer-locator" element={<DealerLocatorPage/>}/>
+      <Route path="/compare-cars" element={<CarComparePage/>}/>
     </Routes>
     </BrowserRouter>
     </>

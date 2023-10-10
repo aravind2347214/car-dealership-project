@@ -15,6 +15,7 @@ function Navbar(props) {
         <div className='flex flex-row justify-between w-1/2 item-center'>
         <div className='flex flex-row justify-between flex-1'>
             <div className={`flex flex-row p-1 ${activeTab==="cars"?"text-white font-bold":"text-[#cacaca]"} hover:text-gray-100`}><Link to="/cars">Cars</Link> </div>
+            <div className={`flex flex-row p-1 ${activeTab==="compare-cars"?"text-white font-bold":"text-[#cacaca]"} hover:text-gray-100`}><Link to="/compare-cars">Compare</Link> </div>
             <div className={`flex flex-row p-1 ${activeTab==="dealer-locator"?"text-white font-bold":"text-[#cacaca]" } hover:text-gray-100`}><Link to="/dealer-locator">Dealer</Link></div>
             <div className={`flex flex-row p-1 ${activeTab==="contact"?"text-white font-bold":"text-[#cacaca]" } hover:text-gray-100`}><Link to="/contact">Contact</Link></div>
             <div className={`flex flex-row p-1 ${activeTab==="customer-stories"?"text-white font-bold":"text-[#cacaca]"} hover:text-gray-100`}><Link to="/customer-stories">Stories</Link> </div>
