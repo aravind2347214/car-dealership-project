@@ -3,7 +3,7 @@ import React from 'react'
 function CarDetail(props) {
     const{data}=props
   return (
-    <div className='flex flex-col w p-2 max-h-[550px] overflow-y-auto '>
+    <div className='flex flex-col w p-2 max-h-[450px] overflow-y-auto '>
     <img src={data.Photo} className='scale-[55%]' alt=""/>
     {/* <div className='w-full min-h-[350px] bg-blue-600'>image</div> */}
     <div className='font-bold text-[30px] text-center text-[#7289DA]'>{data.name}</div>

@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 import { Logo, UserIcon } from './Icons';
 
 function Navbar(props) {
-    const{activeTab}=props;
+    const{activeTab,login}=props;
     // var login=true; 
-    var login=false; 
 
 
     
@@ -20,20 +19,8 @@ function Navbar(props) {
             <div className={`flex flex-row p-1 ${activeTab==="contact"?"text-white font-bold":"text-[#cacaca]" } hover:text-gray-100`}><Link to="/contact">Contact</Link></div>
             <div className={`flex flex-row p-1 ${activeTab==="customer-stories"?"text-white font-bold":"text-[#cacaca]"} hover:text-gray-100`}><Link to="/customer-stories">Stories</Link> </div>
             <div className={`flex flex-row p-1 ${activeTab==="faq"?"text-white font-bold":"text-[#cacaca]" } hover:text-gray-100`}><Link to="/faq">FAQs</Link></div>
+            <div className={`flex flex-row p-1 ${activeTab==="admin-panel"?"text-white font-bold":"text-[#cacaca]" } hover:text-gray-100`}><Link to="/admin-panel">Admin Panel</Link></div>
         </div>
-        {!login?
-        <div className='flex flex-row  w-[40%] justify-center gap-3'>
-            <div className={` px-3 py-1 hover:bg-white rounded-md hover:text-[#7289DA] font-semibold bg-[#dadada82] text-white transition duration-[0.5s] ${activeTab==="login"?"hidden":""} `}><Link to="/login">Login</Link></div>
-            <div className={` px-3 py-1 border border-transparent rounded-md text-[#cacaca] hover:border-white hover:text-white transition duration-[0.5s] ${activeTab==="register"?"hidden":""}`}><Link to="/register">Register</Link></div>
-        </div>:
-        <div className={` w-[40%] p-1 flex justify-end items-center gap-2 ${activeTab==="user-profile"?"text-white font-semibold":"text-[#cacaca]"} hover:text-gray-100`}>
-            <Link to="/user-profile" className='flex flex-row gap-2'>
-            <span>User</span>
-            <UserIcon/>  
-            </Link>
-        </div>
-        }
-
         </div>
     </div>
   )

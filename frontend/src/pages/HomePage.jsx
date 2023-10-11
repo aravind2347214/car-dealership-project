@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-function Home() {
+function Home(props) {
+  const{login,setLogin}=props
   return (
     <>
-    <Navbar activeTab="home"/>
+    <Navbar activeTab="home" login={login}/>
     <div className='bg-red-500 herosection' >
       <div className='bg-[#0000005e] mt-12 pt-[300px] pb-14 px-5 text-left'>
       <div className='font-extrabold text-[70px] text-white'>What is car dealership?</div>

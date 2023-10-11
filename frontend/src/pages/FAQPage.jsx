@@ -3,7 +3,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import SingleQuestion from '../components/SingleQuestion'
 
-function FAQPage() {
+function FAQPage(props) {
+  const{login,setLogin}=props
   const questions=[
     {question:"How can I contact your dealership for further inquiries?",
     answer:"You can use our ‘Contact Page’ for further enquiries. This page will contain a form or our email-id. You are allowed to use either one of the methods to get in touch, but please do not use both, as the request will be logged twie and you will be receiving twice the amount of calls and emails from our side. ",
@@ -17,7 +18,7 @@ function FAQPage() {
   const [activeQuestion,setActiveQuestion]=useState("q0")
   return (
     <>
-    <Navbar activeTab="faq"/>
+    <Navbar activeTab="faq" login={login}/>
     <div className='mt-20 max-h-[500px] overflow-y-auto'>
       <div className='text-[50px] font-extrabold text-[#7289DA] text-center'>
         Frequently Asked Questions

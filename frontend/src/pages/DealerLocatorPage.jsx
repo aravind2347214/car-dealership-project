@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import FormSucessModal from '../components/FormSucessModal';
+import axios from 'axios';
 
-function DealerLocatorPage() {
+function DealerLocatorPage(props) {
+  const{login,setLogin}=props
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -52,13 +54,33 @@ function DealerLocatorPage() {
     setSubmitted(true);
 
     if (isValid) {
-      setSucessModal(true)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        dealer:'none',
-      }); 
+      // setSucessModal(true)
+     
+      const data={
+        name:formData.name,
+        email:formData.email,
+        phone:formData.phone,
+        dealerName:formData.dealer
+      }
+
+      axios.post("http://localhost:8000/add-dealer-email",data).then((res)=>{
+        console.log(res)
+        if(res.statusText==="Created")
+        {
+          setSucessModal(true)
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            dealer:'none',
+          }); 
+    
+
+        }
+      }).catch((err)=>{
+        console.error('Error', err)
+        alert("Some Error has occured")
+      })
     }
   };
 
@@ -66,7 +88,7 @@ function DealerLocatorPage() {
 
   return (
     <>
-    <Navbar activeTab="dealer-locator"/>
+    <Navbar activeTab="dealer-locator" login={login}/>
     <div className='mt-20 w-[95%] mx-auto relative'>
     {
         successModal?<FormSucessModal message="Locating a dealer Based on your Choice will be done shortly" heading="Form Was SucessFully Submitted " setModal={setSucessModal}/>:null

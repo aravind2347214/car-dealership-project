@@ -6,15 +6,16 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import CarsPage from './pages/CarsPage';
 import ContactPage from './pages/ContactPage';
-import UserProfilePage from './pages/UserProfilePage';
 import FAQPage from './pages/FAQPage';
 import CarComparePage from './pages/CarComparePage';
 import CustomerStoriesPage from './pages/CustomerStoriesPage';
 import DealerLocatorPage from './pages/DealerLocatorPage';
 import { useState } from 'react';
+import AdminPanel from './pages/AdminPanel';
 
 function App() {
   const[login,setLogin]=useState(false)
+
   return (
     <>
     <BrowserRouter>
@@ -24,7 +25,7 @@ function App() {
       <Route path="/register" element={<RegisterPage/>}/>
       <Route path="/cars" element={<CarsPage/>}/>
       <Route path="/contact" element={<ContactPage/>}/>
-      <Route path="/user-profile" element={<UserProfilePage/>}/>
+      <Route path="/admin-panel" element={<AdminPanel login={login} setLogin={setLogin}/>}/>
       <Route path="/faq" element={<FAQPage/>}/>
       <Route path="/car-compare" element={<CarComparePage/>}/>
       <Route path="/customer-stories" element={<CustomerStoriesPage/>}/>

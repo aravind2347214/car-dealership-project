@@ -3,7 +3,8 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
  
- function RegisterPage() {
+ function RegisterPage(props) {
+  const{login,setLogin}=props
   // const history = useHistory()
   const [formData, setFormData] = useState({
     name:'',
@@ -90,7 +91,7 @@ import Footer from '../components/Footer'
 
    return (
      <>
-     <Navbar activeTab="register"/>
+     <Navbar activeTab="register" login={login}/>
      <div className='w-full p-10 mt-4 '>
       <form className='flex flex-col gap-2 p-5 mx-auto w-[500px]' onSubmit={handleSubmit}>
       <div className='font-extrabold text-[50px] text-[#7289DA] text-center'>Join Us !</div>

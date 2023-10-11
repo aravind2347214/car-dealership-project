@@ -5,14 +5,15 @@ import { InfoIcon } from '../components/Icons'
 import CarDetail from '../components/CarDetail'
 import {  cars } from '../data/cars'
 
-function CarsPage() {
+function CarsPage(props) {
+  const{login,setLogin}=props
 
   const [activeCar,setActiveCar]=useState({})
 
 
   return (
     <>
-    <Navbar activeTab="cars"/>
+    <Navbar activeTab="cars" login={login}/>
     <div className='mt-20 mb-12  w-[95%] mx-auto flex flex-row gap-1 p-1'>
      <div className='w-1/2 '>
       <div className='font-bold text-[50px]   text-[#7289DA]'>Browse Cars</div>

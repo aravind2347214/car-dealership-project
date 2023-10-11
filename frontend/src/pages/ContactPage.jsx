@@ -4,8 +4,10 @@ import Footer from '../components/Footer'
 import { LocationIcon, MailIcon, PhoneIcon } from '../components/Icons'
 import ContactMap from '../components/ContactMap'
 import FormSucessModal from '../components/FormSucessModal'
+import axios from 'axios'
 
-function ContactPage() {
+function ContactPage(props) {
+  const{login,setLogin}=props
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -50,18 +52,32 @@ function ContactPage() {
     setSubmitted(true);
 
     if (isValid) {
-      setSucessModal(true)
-      setFormData({
-        name: '',
-        email: '',
-        query: ''
-      }); 
+      const data={
+        name:formData.name,
+        email:formData.email,
+        query:formData.query,
+      }
+      axios.post("http://localhost:8000/add-contact-email",data).then((res)=>{
+        console.log(res)
+        if(res.statusText==="Created")
+        {
+          setSucessModal(true)
+          setFormData({
+            name: '',
+            email: '',
+            query: ''
+          }); 
+        }
+      }).catch((err)=>{
+        console.error('Error', err)
+        alert("Some Error has occured")
+      })
     }
   };
 
   return (
     <>
-    <Navbar activeTab="contact"/>
+    <Navbar activeTab="contact" login={login}/>
     <div className='mt-20 w-[95%] mx-auto relative'>
       {
         successModal?<FormSucessModal message="Form Was SucessFully Submitted " heading="Contact Form Submitted" setModal={setSucessModal}/>:null

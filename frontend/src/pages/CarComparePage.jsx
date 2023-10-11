@@ -4,7 +4,8 @@ import Footer from '../components/Footer'
 import { cars } from '../data/cars'
 import CarDetail from '../components/CarDetail'
 
-function CarComparePage() {
+function CarComparePage(props) {
+  const{login,setLogin}=props
 
   const [car1,setCar1]=useState({})
   const [car2,setCar2]=useState({})
@@ -31,8 +32,11 @@ function CarComparePage() {
 
   return (
     <>
-    <Navbar activeTab="compare-cars"/>
-    <div className=' p-1 flex flex-row mt-20'>
+    <Navbar activeTab="compare-cars" login={login}/>
+    <div className='text-center text-[#7289DA] font-extrabold text-[50px] mt-16' >
+      Compare
+    </div>
+    <div className=' p-1 flex flex-row'>
       <div className=' p-1 flex flex-col w-1/2 '>
       <select
             onChange={(e)=>handleSelect1(e)}
