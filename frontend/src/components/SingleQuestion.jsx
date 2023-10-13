@@ -15,7 +15,7 @@ function SingleQuestion(props) {
         console.log(data);
     }
   return (
-    <div className='flex flex-col gap-1 p-1 my-1  bg-[#abbcf915] rounded-md'> 
+    <div className='flex flex-col gap-1 p-1 my-1  bg-[#abbcf915] rounded-md' data-aos="fade-up"> 
        <div className='flex flex-row items-center justify-between p-1 font-bold text-[#7289da]'>
           <div>{data.question}</div> 
           <button className='p-1 ' onClick={(e)=>activeHandler(e,data)}>
@@ -28,7 +28,7 @@ function SingleQuestion(props) {
         </div>
     {
         activeQuestion===data.qId?
-        <div className='p-3 rounded-md bg-white text-[#7289da]'>
+        <div className='p-3 rounded-md bg-white text-[#7289da]' data-aos="fade-up">
         {data.answer}
         </div>:null
     }

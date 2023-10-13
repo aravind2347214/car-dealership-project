@@ -131,7 +131,7 @@ function ContactPage(props) {
                 </div> 
               <div>+91 8574937489</div>
             </div>
-            <div className='flex flex-row items-center'>
+            <div className='flex flex-row items-center mt-3'>
               <div className='font-bold text-[20px] mr-2'>
                 <LocationIcon/>
                 </div> 

@@ -19,7 +19,7 @@ function FAQPage(props) {
   return (
     <>
     <Navbar activeTab="faq" login={login}/>
-    <div className='mt-20 max-h-[500px] overflow-y-auto'>
+    <div className='mt-20  overflow-y-auto'>
       <div className='text-[50px] font-extrabold text-[#7289DA] text-center'>
         Frequently Asked Questions
       </div>
