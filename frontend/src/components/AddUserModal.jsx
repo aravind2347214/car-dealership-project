@@ -2,11 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react'
 
 function AddUserModal(props) {
-  const {setModal}=props
+  const {setModal,setSucessModal}=props
 
   
 
-const [successModal,setSucessModal]=useState(false)
+
 
 const [formData, setFormData] = useState({
   name:'',

@@ -82,13 +82,16 @@ function ContactPage(props) {
       {
         successModal?<FormSucessModal message="Form Was SucessFully Submitted " heading="Contact Form Submitted" setModal={setSucessModal}/>:null
       }
-      <div className='text-[50px] font-extrabold text-[#7289DA] text-left'>
+      <div className='text-[50px] font-extrabold text-[#7289DA] text-left' data-aos="fade-down">
         Get in Touch With Us
       </div>
       <div className='flex flex-row justify-between p-1 overflow-y-auto'>
-        <form className='flex flex-col w-[35%] gap-2 p-2 max-h-[500px]'onSubmit={handleSubmit}>
+        <form className='flex flex-col w-[35%] gap-2 p-2 max-h-[500px]'
+        data-aos="fade-up"
+        onSubmit={handleSubmit}>
           <input
            name="name"
+           
            value={formData.name}
            onChange={handleInputChange}
            className='p-2 rounded-md bg-gray-100 focus:outline-[#7289DA]' type="text"  placeholder='Your Name'/>
@@ -109,7 +112,7 @@ function ContactPage(props) {
           <div className='flex justify-end py-1 '>
             <button type="submit"  className=' px-[32px] py-[8px] bg-[#7289DA] hover:shadow-lg hover:scale-105 rounded-md font-semibold text-white'>Submit</button>
           </div>
-          <div className='w-1/2  text-[#7289DA] p-2 flex flex-col gap-3'>
+          <div className='w  text-[#7289DA] p-2 flex flex-col gap-3 '>
             <div className='font-bold text-[18px]'>Reach us via</div>
             <div className='flex flex-row items-center'>
               <div className='font-bold text-[20px] mr-2'>
@@ -120,6 +123,8 @@ function ContactPage(props) {
               </div>
               
             </div>
+            <div className='flex flex-col'>
+
             <div className='flex flex-row items-center'>
               <div className='font-bold text-[20px] mr-2'>
                 <PhoneIcon/>
@@ -130,12 +135,15 @@ function ContactPage(props) {
               <div className='font-bold text-[20px] mr-2'>
                 <LocationIcon/>
                 </div> 
-              <div>cardealer@gmail.com</div>
+              <div>SG Palaya,Kormanagala,Bangaluru</div>
+            </div>
             </div>
 
           </div>
          </form>
-      <div className=' overflow-hidden border-2 border-[#7289DA] rounded-md h-[80%]'>
+      <div
+      data-aos="fade-in"
+       className=' overflow-hidden border-2 border-[#7289DA] rounded-md h-[80%]'>
       <iframe
                         width="800"
                         height="500"

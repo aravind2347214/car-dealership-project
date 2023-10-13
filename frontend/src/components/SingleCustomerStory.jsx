@@ -3,7 +3,9 @@ import React from 'react'
 function SingleCustomerStory(props) {
     const{data}=props
   return (
-    <div className='w-[400px] bg-[#7289da13] p-2 rounded-sm  flex flex-col shadow-md shadow-[#7289da68]'>
+    <div 
+    data-aos="fade-up"
+    className='w-[400px] bg-[#7289da13] p-2 rounded-sm  flex flex-col shadow-md shadow-[#7289da68]'>
             {/* this represents the div for a single testimonial card with  */}
             <div className='p-2 italic text-ellipsis  flex-1'>              
            {data.reviewContent}

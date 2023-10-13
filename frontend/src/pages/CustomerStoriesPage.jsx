@@ -11,6 +11,17 @@ function CustomerStoriesPage(props) {
   const{login,setLogin}=props
 
   const [successModal,setSucessModal]=useState(false)
+
+  const getAllReviews=async()=>{
+   await axios.get("http://localhost:8000/get-all-reviews").then((res)=>{
+        console.log(res.data)
+        setReviews(res.data)
+      }).catch((err)=>{
+        console.log(err)
+      })
+
+
+  }
   
   const [reviews,setReviews]=useState([])
 
@@ -26,16 +37,17 @@ function CustomerStoriesPage(props) {
 
   useEffect(()=>{
     if(reviews.length===0){
-      axios.get("http://localhost:8000/get-all-reviews").then((res)=>{
-        console.log(res.data)
-        setReviews(res.data)
-      }).catch((err)=>{
-        console.log(err)
-      })
+      getAllReviews()
     }
   },[])
 
+
+
   const [yourStoryModal,setYourStoryModal]=useState(false)
+
+  useEffect(()=>{
+    getAllReviews()
+  })
 
 
   return (
@@ -46,7 +58,7 @@ function CustomerStoriesPage(props) {
         successModal?<FormSucessModal message="Form Was SucessFully Submitted " heading="New Review Added" setModal={setSucessModal}/>:null
       }
 
-      <div className='text-[50px] font-extrabold text-[#7289DA] text-center'>Customer Stories</div>
+      <div className='text-[50px] font-extrabold text-[#7289DA] text-center' data-aos="fade-down">Customer Stories</div>
         <div className='flex flex-row flex-wrap justify-center gap-4 p-2 mx-auto w-fit'>
           {
             reviews.map((node)=>(
@@ -55,7 +67,7 @@ function CustomerStoriesPage(props) {
           }
           </div>
 
-          <div className='mx-auto mt-10 w-fit'>
+          <div className='mx-auto mt-1 w-fit' >
             <button
             onClick={()=> setYourStoryModal(true)}
              className='text-[#7289DA] border-transparent border-2 justify-between transition delay-100 hover:border-[#7289DA] rounded-full px-4 flex flex-row items-center gap-2 p-2 font-semibold'>Tell Your Story

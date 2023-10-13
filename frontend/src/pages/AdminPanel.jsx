@@ -16,16 +16,27 @@ function AdminPanel(props) {
   const [dealerEmails,setDealerEmails]=useState([])
   const [addUserModal,setAddUserModal]=useState(false)
   const [successModal,setSucessModal]=useState(false)
+  const [userAdded,setUserAdded]=useState(false)
 
   const navigate = useNavigate()
 
-  useEffect(()=>{
-    if(users.length===0){
-      axios.get("http://localhost:8000/get-all-users").then((res)=>{
+  const getAllUsers=async()=>{
+    axios.get("http://localhost:8000/get-all-users").then((res)=>{
         setUsers(res.data)
       }).catch((err)=>{
         console.log(err)
       })
+  }
+
+  useEffect(()=>{
+    getAllUsers()
+  },[successModal])
+
+
+
+  useEffect(()=>{
+    if(users.length===0){
+      getAllUsers()
     }
 
     if(reviews.length===0){
@@ -76,7 +87,7 @@ function AdminPanel(props) {
    
     <div className='my-20 flex flex-col w-[95%] mx-auto relative'>
       {addUserModal&&
-      <AddUserModal setModal={setAddUserModal}/>
+      <AddUserModal setModal={setAddUserModal} setSucessModal={setSucessModal}/>
       }
 
       {
@@ -117,7 +128,7 @@ function AdminPanel(props) {
                     <td>{node.name}</td>
                     <td>{node.phone}</td>
                     <td>{node.gender}</td>
-                    <td>{node.email}</td>
+                    <td className='truncate'>{node.email}</td>
                     <td>{moment(node.dob).format("LL")}</td>
                   </tr>
                 ))
@@ -167,7 +178,7 @@ function AdminPanel(props) {
               {contactEmails.map((node)=>(
                 <tr key={node.userID}>
                   <td>{node.name}</td>
-                  <td>{node.email}</td>
+                  <td className='truncate'>{node.email}</td>
                   <td>{node.query}</td>
                 </tr>
               ))
@@ -193,7 +204,7 @@ function AdminPanel(props) {
               {dealerEmails.map((node)=>(
                 <tr key={node.eid}>
                   <td>{node.name}</td>
-                  <td>{node.email}</td>
+                  <td className='truncate'>{node.email}</td>
                   <td>{node.phone}</td>
                   <td>{node.dealerName}</td>
                 </tr>

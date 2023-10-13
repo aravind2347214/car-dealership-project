@@ -33,14 +33,16 @@ function CarComparePage(props) {
   return (
     <>
     <Navbar activeTab="compare-cars" login={login}/>
-    <div className='text-center text-[#7289DA] font-extrabold text-[50px] mt-16' >
+    <div className='text-center text-[#7289DA] font-extrabold text-[50px] mt-16' data-aos="fade-down" >
       Compare
     </div>
     <div className=' p-1 flex flex-row'>
-      <div className=' p-1 flex flex-col w-1/2 '>
+      <div className=' p-1 flex flex-col w-1/2 ' data-aos="fade-up">
       <select
             onChange={(e)=>handleSelect1(e)}
-             name="car" id="" className=' mx-5 p-2 rounded-md bg-gray-100 focus:outline-[#7289DA] text-[#7289DA]'>
+             name="car" id=""
+             data-aos="fade-up"
+              className=' mx-5 p-2 rounded-md bg-gray-100 focus:outline-[#7289DA] text-[#7289DA]'>
               <option value="none" selected>No Car selected</option>
               {
                 cars.map((node)=>(
@@ -52,14 +54,16 @@ function CarComparePage(props) {
             </select>
             {car1?.name?
              <CarDetail data={car1}/> :
-             <div className='mx-auto font-bold text-[#ccc] mt-[20%]'>Choose Any Car</div>
+             <div className='mx-auto font-bold text-[#ccc] mt-[20%]' data-aos="fade-up">Choose Any Car</div>
 
             }
       </div>
-      <div className=' p-1 flex flex-col w-1/2 '>
+      <div className=' p-1 flex flex-col w-1/2 ' >
       <select
             onChange={(e)=>handleSelect2(e)}
-             name="car" id="" className=' mx-5 p-2 rounded-md bg-gray-100 focus:outline-[#7289DA] text-[#7289DA]'>
+             name="car" id=""
+             data-aos="fade-up"
+             className=' mx-5 p-2 rounded-md bg-gray-100 focus:outline-[#7289DA] text-[#7289DA]'>
               <option value="none" selected>No Car selected</option>
               {
                 cars.map((node)=>(
@@ -71,7 +75,7 @@ function CarComparePage(props) {
             </select>
             {car2?.name?
              <CarDetail data={car2}/> :
-             <div className='mx-auto font-bold text-[#ccc] mt-[20%]'>Choose Any Car</div>
+             <div className='mx-auto font-bold text-[#ccc] mt-[20%]' data-aos="fade-up">Choose Any Car</div>
 
             }
       </div>

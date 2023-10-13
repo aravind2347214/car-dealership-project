@@ -10,10 +10,22 @@ import FAQPage from './pages/FAQPage';
 import CarComparePage from './pages/CarComparePage';
 import CustomerStoriesPage from './pages/CustomerStoriesPage';
 import DealerLocatorPage from './pages/DealerLocatorPage';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AdminPanel from './pages/AdminPanel';
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 function App() {
+ 
+  useEffect(()=>{
+    AOS.init();
+    // AOS.init({
+    //   offset: 200,
+    //   duration: 600,
+    //   easing: 'ease-in-sine',
+    //   delay: 100,
+    // });
+  })
   const[login,setLogin]=useState(false)
 
   return (
