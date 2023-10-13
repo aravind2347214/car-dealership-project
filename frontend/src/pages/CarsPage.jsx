@@ -31,7 +31,11 @@ function CarsPage(props) {
       </div>
      </div>
      {activeCar.name?
-    <CarDetail data={activeCar}/>:
+     <div className='flex items-center '>
+       <CarDetail data={activeCar}/>
+     </div>
+    
+    :
     <div className='mx-auto font-bold text-[#ccc] mt-[20%]' data-aos="fade-in">Choose Any Car</div>
     }
     </div>

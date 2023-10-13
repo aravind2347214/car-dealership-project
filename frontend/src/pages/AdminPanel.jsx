@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router'
 import AddUserModal from '../components/AddUserModal'
 import FormSucessModal from '../components/FormSucessModal'
 import moment from 'moment'
-import { DeleteIcon } from '../components/Icons'
+import { DeleteIcon, LogoutIcon } from '../components/Icons'
 
 function AdminPanel(props) {
   const{login,setLogin}=props
@@ -32,9 +32,9 @@ function AdminPanel(props) {
   const handleDelete=async(e,id)=>{
     const deleteId=id
     console.log(deleteId);
-    axios.delete(`http://localhost:8000/delete-user/${deleteId}`).then((res)=>{
-      setUsers(res.data)
+   await axios.delete(`http://localhost:8000/delete-user/${deleteId}`).then((res)=>{
       setUserDeleted(true)
+      getAllUsers()
     }).catch((err)=>{
       console.log(err)
     })
@@ -115,7 +115,10 @@ function AdminPanel(props) {
       
 
       <div className='flex justify-end w-full '>
-        <button onClick={handleLogout} className='font-bold hover:bg-[#7289da4c]   text-[#7289DA] rounded-md text-[14px] h-fit px-4 py-2'>Logout</button>
+        <button onClick={handleLogout} className='font-bold hover:bg-[#7289da4c] flex flex-row  text-[#7289DA] rounded-md text-[14px] h-fit px-4 py-2'>
+          <span className="mr-2">Logout</span>
+          <LogoutIcon/>
+          </button>
       </div>
 
       <div className='text-center font-bold text-[50px] text-[#7289DA] my-10'>

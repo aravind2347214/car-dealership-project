@@ -3,10 +3,10 @@ import React from 'react'
 function CarDetail(props) {
     const{data}=props
   return (
-    <div className='flex flex-col w p-2 max-h-[450px] overflow-y-auto ' data-aos="fade-up">
-    <img src={data.Photo} className='scale-[55%]' alt=""/>
+    <div className='flex flex-col w p-2 max-h-[480px] overflow-y-auto ' data-aos="fade-up">
+    <img src={data.Photo} className='scale-[60%]' alt=""/>
+    <div className='font-bold text-[40px] text-center text-[#7289DA] mb-12'>{data.name}</div>
     {/* <div className='w-full min-h-[350px] bg-blue-600'>image</div> */}
-    <div className='font-bold text-[30px] text-center text-[#7289DA]'>{data.name}</div>
     <div className='flex flex-row flex-wrap gap-2 '>
       <div className='flex flex-col p-1 w-fit'>
         <div className='text-[14px] font-semibold'>Price Range</div>

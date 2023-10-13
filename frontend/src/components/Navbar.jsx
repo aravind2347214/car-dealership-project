@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Logo, UserIcon } from './Icons';
+
 
 function Navbar(props) {
-    const{activeTab,login}=props;
+    const{activeTab}=props;
     // var login=true; 
 
 
