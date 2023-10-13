@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router'
 import AddUserModal from '../components/AddUserModal'
 import FormSucessModal from '../components/FormSucessModal'
 import moment from 'moment'
+import { DeleteIcon } from '../components/Icons'
 
 function AdminPanel(props) {
   const{login,setLogin}=props
@@ -16,7 +17,7 @@ function AdminPanel(props) {
   const [dealerEmails,setDealerEmails]=useState([])
   const [addUserModal,setAddUserModal]=useState(false)
   const [successModal,setSucessModal]=useState(false)
-  const [userAdded,setUserAdded]=useState(false)
+  const [userDeleted,setUserDeleted]=useState(false)
 
   const navigate = useNavigate()
 
@@ -26,6 +27,19 @@ function AdminPanel(props) {
       }).catch((err)=>{
         console.log(err)
       })
+  }
+
+  const handleDelete=async(e,id)=>{
+    const deleteId=id
+    console.log(deleteId);
+    axios.delete(`http://localhost:8000/delete-user/${deleteId}`).then((res)=>{
+      setUsers(res.data)
+      setUserDeleted(true)
+    }).catch((err)=>{
+      console.log(err)
+    })
+    
+
   }
 
   useEffect(()=>{
@@ -91,7 +105,11 @@ function AdminPanel(props) {
       }
 
       {
-        successModal?<FormSucessModal message="Users Updated " heading="New User Added Successfully" setModal={setSucessModal}/>:null
+        successModal?<FormSucessModal message="New User Added Successfully" heading="Users Updated" setModal={setSucessModal}/>:null
+      }
+      {
+        userDeleted?
+        <FormSucessModal message="One user was deleted from Users" heading="Delete Update" setModal={setUserDeleted()}/>:null
       }
 
       
@@ -105,59 +123,75 @@ function AdminPanel(props) {
       </div>
 
       <div className='flex flex-row gap-2 flex-wrap xl:flex-nowrap'>
-        <div className='p-2   flex flex-col gap-1 my-3 bg-gray-100 rounded-md'>
+        
+        <div className='p-2   flex flex-col gap-1 my-3 bg-gray-100 rounded-md min-w-[50%]'>
           <div className='flex flex-row justify-between text-white items-center'>
             <div className='text-[30px] font-bold text-[#7289DA]'>Users</div>
             <button className=' font-bold bg-[#7289DA] hover:bg-[#576dba] rounded-md text-[12px] h-fit px-4 py-2' onClick={handleAddUser}>Add User</button>
           </div>
 
-          <div className=' p-1 flex flex-col gap-1'>
-          <table>
-              <tr >
-                  <th >User Id</th>
-                  <th >Name</th>
-                  <th >Phone</th>
-                  <th >Gender</th>
-                  <th>Email</th>
-                  <th >Date of Birth</th>
-              </tr>
-              <tbody class="tbody" id="tbody" className='text-[11px]'>
-                {users.map((node)=>(
-                  <tr key={node.userID}>
-                    <td>{node.userID}</td>
-                    <td>{node.name}</td>
-                    <td>{node.phone}</td>
-                    <td>{node.gender}</td>
-                    <td className='truncate'>{node.email}</td>
-                    <td>{moment(node.dob).format("LL")}</td>
+          <div className=' p-1 flex flex-col gap-1  flex-1'>
+          {
+            users&&users.length>0?
+              <table>
+                  <tr >
+                      
+                      <th >Name</th>
+                      <th >Phone</th>
+                      <th >Gender</th>
+                      <th>Email</th>
+                      <th >Date of Birth</th>
+                      <th className='text-center'>Action</th>
                   </tr>
-                ))
-                }
-              </tbody>
-          </table>
+                  <tbody class="tbody" id="tbody" className='text-[11px]'>
+                    {users?.map((node)=>(
+                      <tr key={node.userID}>
+                        <td>{node.name}</td>
+                        <td>{node.phone}</td>
+                        <td>{node.gender}</td>
+                        <td className='truncate'>{node.email}</td>
+                        <td>{moment(node.dob).format("LL")}</td>
+                        <td title='Delete' className='flex  justify-center'><button onClick={(e)=>handleDelete(e,node.userID)}><DeleteIcon/></button></td>
+
+                      </tr>
+                    ))
+                    }
+                  </tbody>
+              </table>:
+              <div className='mx-auto text-gray-300 font-semibold text-[20px] mt-[20%]'>
+                No Existing Users
+              </div>
+          }  
 
           </div>
 
         </div>
 
+
         <div className='p-2  flex flex-col  gap-1 my-3 bg-gray-100 rounded-md'>
           <div className='text-[30px] font-bold text-[#7289DA]'>Reviews</div>
           <div className=' p-1 flex flex-col gap-1'>
-          <table>
-              <tr >
-                  <th >Name</th>
-                  <th >Review</th>
-              </tr>
-              <tbody id="tbody" className='text-[11px] tbody'>
-                {reviews.map((node)=>(
-                  <tr key={node.userID}>
-                    <td>{node.reviewerName}</td>
-                    <td>{node.reviewContent}</td>
+            {
+              reviews&&reviews.length>0?
+              <table>
+                  <tr >
+                      <th >Name</th>
+                      <th >Review</th>
                   </tr>
-                ))
-                }
-              </tbody>
-          </table>
+                  <tbody id="tbody" className='text-[11px] tbody'>
+                    {reviews.map((node)=>(
+                      <tr key={node.userID}>
+                        <td>{node.reviewerName}</td>
+                        <td>{node.reviewContent}</td>
+                      </tr>
+                    ))
+                    }
+                  </tbody>
+              </table>:
+              <div className='mx-auto text-gray-300 font-semibold text-[20px] mt-[20%]'>
+                No Existing Users
+              </div>
+            }
 
           </div>
 
@@ -168,23 +202,29 @@ function AdminPanel(props) {
       <div className='p-2  flex flex-col gap-1 my-3 bg-gray-100 rounded-md'>
         <div className='text-[30px] font-bold text-[#7289DA]'>Contact Emails</div>
         <div className=' p-1 flex flex-col gap-1'>
-        <table>
-            <tr >
-                <th >Name</th>
-                <th>Email</th>
-                <th >Query</th>
-            </tr>
-            <tbody class="tbody" id="tbody" className='text-[11px]'>
-              {contactEmails.map((node)=>(
-                <tr key={node.userID}>
-                  <td>{node.name}</td>
-                  <td className='truncate'>{node.email}</td>
-                  <td>{node.query}</td>
-                </tr>
-              ))
-              }
-            </tbody>
-        </table>
+          {
+            contactEmails&&contactEmails.length>0?
+          <table>
+              <tr >
+                  <th >Name</th>
+                  <th>Email</th>
+                  <th >Query</th>
+              </tr>
+              <tbody class="tbody" id="tbody" className='text-[11px]'>
+                {contactEmails.map((node)=>(
+                  <tr key={node.userID}>
+                    <td>{node.name}</td>
+                    <td className='truncate'>{node.email}</td>
+                    <td>{node.query}</td>
+                  </tr>
+                ))
+                }
+              </tbody>
+          </table>:
+          <div className='mx-auto text-gray-300 font-semibold text-[20px] mt-[20%]'>
+          No Existing Users
+          </div>  
+          }
 
         </div>
 
@@ -193,25 +233,33 @@ function AdminPanel(props) {
       <div className='p-2  flex flex-col gap-1 my-3 bg-gray-100 rounded-md '>
         <div className='text-[30px] font-bold text-[#7289DA]'>Dealer Emails</div>
         <div className=' p-1 flex flex-col gap-1'>
-        <table>
-            <tr >
-                <th >Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Dealer</th>
-            </tr>
-            <tbody class="tbody" id="tbody" className='text-[11px]'>
-              {dealerEmails.map((node)=>(
-                <tr key={node.eid}>
-                  <td>{node.name}</td>
-                  <td className='truncate'>{node.email}</td>
-                  <td>{node.phone}</td>
-                  <td>{node.dealerName}</td>
+          {
+            dealerEmails&&dealerEmails.length>0?
+            <table>
+                <tr >
+                    <th >Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Dealer</th>
                 </tr>
-              ))
-              }
-            </tbody>
-        </table>
+                <tbody class="tbody" id="tbody" className='text-[11px]'>
+                  {dealerEmails.map((node)=>(
+                    <tr key={node.eid}>
+                      <td>{node.name}</td>
+                      <td className='truncate'>{node.email}</td>
+                      <td>{node.phone}</td>
+                      <td>{node.dealerName}</td>
+                    </tr>
+                  ))
+                  }
+                </tbody>
+            </table>:
+            <div className='mx-auto text-gray-300 font-semibold text-[20px] mt-[20%]'>
+            No Existing Users
+            </div>  
+
+
+          }
 
         </div>
 

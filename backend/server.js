@@ -12,6 +12,7 @@ const PORT=8000;
 
 
 
+
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -173,6 +174,20 @@ app.post("/add-user",(req,res)=>{
     })
   })
 
+// Delete user
+  app.delete("/delete-user/:id", (req, res) => {
+    const userid = req.params.id;
+    
+    const sql = "DELETE FROM users WHERE userid = ?";
+    
+    connection.query(sql, [userid], (error, results) => {
+        if (error) {
+            console.error('Error executing MySQL query:', error);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json(results)
+    });
+});
 
   
  
